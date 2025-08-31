@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+*.egg
+*.egg-info/
+*.manifest
+*.spec
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+.pyenv/
+myenv/
+pip-wheel-metadata/
+*.egg-info/
+
+# Django Stuff
+*.log
+db.sqlite3
+media/
+staticfiles/
+static/
+
+# GraphQL / Graphene (no special files, but cover migrations)
+crm/migrations/__pycache__/
+crm/migrations/*.py
+!crm/migrations/__init__.py
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# Coverage / Testing
+htmlcov/
+.coverage
+coverage.xml
+.pytest_cache/
+.tox/
+.mypy_cache/
+.pyre/

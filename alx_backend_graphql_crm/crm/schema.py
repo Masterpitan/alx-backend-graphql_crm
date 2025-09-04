@@ -2,8 +2,12 @@ import re
 import decimal
 import graphene
 from graphene_django import DjangoObjectType
+from graphene import relay
 from django.db import transaction
 from .models import Customer, Product, Order
+from graphene_django.filter import DjangoFilterConnectionField
+from .filters import CustomerFilter, ProductFilter, OrderFilter
+
 
 # --------------------
 # GraphQL Types
@@ -11,19 +15,20 @@ from .models import Customer, Product, Order
 class CustomerType(DjangoObjectType):
     class Meta:
         model = Customer
-        fields = ("id", "name", "email", "phone")
-
+        interfaces = (relay.Node,)
+        filter_fields = []
 
 class ProductType(DjangoObjectType):
     class Meta:
         model = Product
-        fields = ("id", "name", "price", "stock")
-
+        interfaces = (relay.Node,)   # 🔹 Add this
+        filter_fields = []
 
 class OrderType(DjangoObjectType):
     class Meta:
         model = Order
-        fields = ("id", "customer", "products", "total_amount", "order_date")
+        interfaces = (relay.Node,)   # 🔹 Add this
+        filter_fields = []
 
 
 # --------------------
@@ -160,11 +165,10 @@ class Mutation(graphene.ObjectType):
     create_order = CreateOrder.Field()
 
 
-# --------------------
-# Query (minimal for now)
-# --------------------
 class Query(graphene.ObjectType):
-    customers = graphene.List(CustomerType)
+    all_customers = DjangoFilterConnectionField(CustomerType, filterset_class=CustomerFilter)
+    all_products = DjangoFilterConnectionField(ProductType, filterset_class=ProductFilter)
+    all_orders = DjangoFilterConnectionField(OrderType, filterset_class=OrderFilter)
 
-    def resolve_customers(root, info):
-        return Customer.objects.all()
+#    def resolve_customers(root, info):
+#        return Customer.objects.all()

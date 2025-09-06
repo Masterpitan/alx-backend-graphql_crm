@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'crm',
     'graphene_django',
     'django_filters',
-
+    'django_apscheduler',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +71,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'alx_backend_graphql_crm.wsgi.application'
+# CRONJOBS = [
+  #  ('0 2 * * 0', 'crm.cron.clean_inactive_customers'),  # every Sunday 2am
+#]
 
 
 # Database

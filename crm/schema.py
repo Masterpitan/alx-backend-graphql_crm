@@ -173,3 +173,4 @@ class Query(graphene.ObjectType):
     all_customers = DjangoFilterConnectionField(CustomerType, filterset_class=CustomerFilter)
     all_products = DjangoFilterConnectionField(ProductType, filterset_class=ProductFilter)
     all_orders = DjangoFilterConnectionField(OrderType, filterset_class=OrderFilter)
+# UpdateLowStockProducts, 10, from crm.models import Product

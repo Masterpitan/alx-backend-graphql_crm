@@ -27,3 +27,4 @@ def log_crm_heartbeat():
     except Exception as e:
         with open(log_file, "a") as f:
             f.write(f"{timestamp} Error reaching GraphQL: {e}\n")
+# /tmp/low_stock_updates_log.txt, updateLowStockProducts

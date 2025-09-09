@@ -1,6 +1,7 @@
 import datetime
 import requests
-
+from gql.transport.requests import RequestsHTTPTransport
+from gql import gql, Client
 def log_crm_heartbeat():
     log_file = "/tmp/crm_heartbeat_log.txt"
     timestamp = datetime.datetime.now().strftime("%d/%m/%Y-%H:%M:%S")
